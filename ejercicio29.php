@@ -8,10 +8,20 @@ try {
     $conexion=new PDO("mysql:host=$server;dbname=album", $usuario,$contraseña);
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 
-    $sql="INSERT INTO `personas` (`id`, `nombre`, `ruta`) VALUES (NULL, 'Jugando con la programación', 'foto.jpg');";
+    $sql="SELECT * FROM `personas`";
 
-    $conexion->exec($sql);
+    $data=$conexion->prepare($sql);
+    $data->execute();
 
+    $resultado=$data->fetchAll();
+
+    /* print_r($resultado); */
+
+    foreach($resultado as $dato){
+        $nombre=$dato["nombre"];
+        echo $nombre."<br/>";
+    }
+    
     echo "Conexión establecida";
 } catch (PDOException $error) {
     echo "Conexión erronea".$error;
