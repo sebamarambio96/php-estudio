@@ -1,5 +1,5 @@
 <?php
-
+//
 $txtNombre = "";
 $radio="";
 if ($_POST) {
